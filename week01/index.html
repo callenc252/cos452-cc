@@ -1,11 +1,44 @@
-<!DOCTYPE html>
-<html>
+<!doctype html>
+<html lang="en">
 <head>
-    <title>WebGL Example</title>
+  <meta charset="utf-8">
+  <title>Week 1 Starter — Canvas &amp; Clear Color</title>
+  <style>
+    html, body { height: 100%; margin: 0; }
+    canvas { width: 50%; height: 50%; display: block; }
+  </style>
 </head>
-
 <body>
-    
-</body>
+  <canvas id="gl-canvas"></canvas>
+  <script>
+    const canvas = document.getElementById("gl-canvas");
+    const gl = canvas.getContext("webgl2");
 
+    if (!gl) {
+      throw new Error("WebGL2 is not available on this device/browser.");
+    }
+
+    function resizeCanvasToDisplaySize() {
+      const dpr = window.devicePixelRatio || 1;
+      const width = Math.round(canvas.clientWidth * dpr);
+      const height = Math.round(canvas.clientHeight * dpr);
+      if (canvas.width !== width || canvas.height !== height) {
+        canvas.width = width;
+        canvas.height = height;
+      }
+    }
+
+    function render() {
+      resizeCanvasToDisplaySize();
+      gl.viewport(0, 0, canvas.width, canvas.height);
+      // TODO(student): try changing these values
+      //gl.clearColor(0.1, 0.15, 0.35, 1.0);
+      gl.clearColor(Math.random(), Math.random(), Math.random(), 1.0)
+      gl.clear(gl.COLOR_BUFFER_BIT);
+    }
+    setInterval(render, 1000)
+    window.addEventListener("resize", render);
+    render();
+  </script>
+</body>
 </html>
