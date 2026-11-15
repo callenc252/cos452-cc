@@ -147,7 +147,8 @@
       gl.uniformMatrix4fv(uMVP, false, mvp);
       gl.uniformMatrix4fv(uModel, false, model);
 
-      //A higher shininess value = less shiny. 
+      //A higher shininess value = less shiny, softer. 
+      //The first 2 parts are already added in-code, from my viewing 
       gl.uniform3f(uLightPos, 1.5, 3.1, 2.6);
       gl.uniform3f(uViewPos, 0, 0, viewDist);
       gl.uniform1f(uShininess, 5.0);
